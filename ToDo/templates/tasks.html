@@ -1,0 +1,43 @@
+{% if request.user.is_authenticated %}
+  <p>{{ request.user.username }}</p>
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+  <a href="{% url 'add_task' %}">New Task</a>
+<hr>
+<table>
+
+
+   
+    <tr>
+        <th>Tasks</th>
+        <th>Description</th>
+    </tr> 
+    {% for i in tasks %}	
+    <tr>
+	    <td> {{ i.title }} </td>
+		<td> {{ i.description }} </td>
+    </tr> 
+                {% endfor %}
+
+</table>
+<hr>
+  <a href="{% url 'logout' %}">Logout</a>
+<!-- {% else %} -->
+  <!-- <a href="{% url 'login' %}">Login</a>
+  <a href="{% url 'register' %}">Signup</a> -->
+{% endif %}

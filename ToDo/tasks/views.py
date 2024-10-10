@@ -8,7 +8,9 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def index(request):
-    return render(request, 'index.html')
+    
+    return render(request,'index.html')
+   
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -53,3 +55,7 @@ def new_task(request):
     else:
         forms = TaskForm()
     return render(request,'add_task.html',{'forms':forms})
+@login_required
+def all_tasks(request):
+    gTask = TaskList.objects.filter(user = request.user)
+    return render(request,'tasks.html',{'tasks':gTask})
