@@ -1,8 +1,10 @@
 
-from .forms import RegistrationForm,LoginForm
-from .models import models
+from .forms import RegistrationForm,LoginForm,TaskForm
+from .models import *
+from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate, login, logout 
 from django.shortcuts import render,redirect
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def index(request):
@@ -35,3 +37,19 @@ def user_login(request):
 def sign_out(request):
     logout(request)
     return redirect('login')
+@login_required
+def new_task(request):
+    if request.method == 'POST':
+        forms = TaskForm(request.POST)
+        if forms.is_valid():
+             
+            #  new_task = forms.save(commit=False)
+            #  new_task.task =request.user
+            task_is = forms.save(commit=False)
+            task_is.user = request.user
+            task_is.save()
+            print('Created')
+            return redirect('home')
+    else:
+        forms = TaskForm()
+    return render(request,'add_task.html',{'forms':forms})
