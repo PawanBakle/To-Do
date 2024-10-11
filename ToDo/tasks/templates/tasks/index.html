@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'Todo/main.css' %}">
+
+
+</head>
+<body>
+  <h2 class="user">{{ request.user.username }}</h2>
+{% if request.user.is_authenticated %}
+<div class="container">
+  <div class="main-view">
+    <h2 style="font-weight: 400;">My Tasks</h2>
+   
+      <div class="tsk-a"><a class="tsk-a" id="tsk-hover" style="text-decoration: none;" href="{% url 'add_task' %}">New Task </a></div>
+
+   
+  <hr><br><br>
+  <button class="button-9"><a href="{% url 'my_task' %}">VIEW MY TASKS</a> </button>
+
+
+  <hr><br><br>
+  <button class="button-8"><a href="{% url 'logout' %}">Logout</a></button>
+{% else %}
+  <a href="{% url 'login' %}">Login</a>
+  <a href="{% url 'register' %}">Signup</a>
+{% endif %}
+</div>
+</div>
+</body>
+</html>

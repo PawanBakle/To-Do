@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 def index(request):
     
-    return render(request,'index.html')
+    return render(request,'tasks/index.html')
    
 def register(request):
     if request.method == 'POST':
@@ -20,7 +20,7 @@ def register(request):
             return redirect('login')
     else:
         form = RegistrationForm()
-    return render(request,'register.html',{'form':form})
+    return render(request,'tasks/register.html',{'form':form})
 def user_login(request):
     if request.method == "POST":
         form = LoginForm(request.POST)
@@ -34,7 +34,7 @@ def user_login(request):
     else:
          form = LoginForm()
 
-    return render(request,'login.html', {'form': form})
+    return render(request,'tasks/login.html', {'form': form})
         
 def sign_out(request):
     logout(request)
@@ -54,8 +54,8 @@ def new_task(request):
             return redirect('home')
     else:
         forms = TaskForm()
-    return render(request,'add_task.html',{'forms':forms})
+    return render(request,'tasks/add_task.html',{'forms':forms})
 @login_required
 def all_tasks(request):
     gTask = TaskList.objects.filter(user = request.user)
-    return render(request,'tasks.html',{'tasks':gTask})
+    return render(request,'tasks/tasks.html',{'tasks':gTask})
