@@ -16,15 +16,15 @@
   <div class="main-view">
     <h2 style="font-weight: 400;">My Tasks</h2>
    
-      <div class="tsk-a"><a class="tsk-a" id="tsk-hover" style="text-decoration: none;" href="{% url 'add_task' %}">New Task </a></div>
+      <a class="tsk-a" id="tsk-hover" style="text-decoration: none;" href="{% url 'add_task' %}">New Task </a>
 
    
-  <hr><br><br>
-  <button class="button-9"><a href="{% url 'my_task' %}">VIEW MY TASKS</a> </button>
+  <hr><br> 
+  <a class="button-9"  href="{% url 'my_task' %}">My Tasks</a> 
 
 
-  <hr><br><br>
-  <button class="button-8"><a href="{% url 'logout' %}">Logout</a></button>
+  <hr><br>
+  <a class="button-8" href="{% url 'logout' %}">Logout</a>
 {% else %}
   <a href="{% url 'login' %}">Login</a>
   <a href="{% url 'register' %}">Signup</a>
