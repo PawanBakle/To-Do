@@ -1,7 +1,7 @@
 {% load static %}
 {% if request.user.is_authenticated %}
 <link rel="stylesheet" type="text/css" href="{% static 'Todo/main.css' %}">
-<p>{{ request.user.username }}</p>
+<h2 class="user">{{ request.user.username }}</h2>
 <style>
   table {
     font-family: arial, sans-serif;
@@ -37,12 +37,13 @@
     <td> {{ i.title }} </td>
     <td> {{ i.description }} </td>
     <td> {{ i.tags }} </td>
+    <td> <a class="button8-task" href="{% url 'edit' i.id %}">Edit</a> </td>
   </tr>
   {% endfor %}
 
 </table>
 <hr>
-<a class="button-9" href="{% url 'logout' %}">Logout</a>
+<a class="button-8" href="{% url 'logout' %}">Logout</a>
 <!-- {% else %} -->
 <!-- <a href="{% url 'login' %}">Login</a>
   <a href="{% url 'register' %}">Signup</a> -->

@@ -18,3 +18,9 @@ class TaskForm(forms.ModelForm):
         model = TaskList
        
         fields = ['title','description','tags']
+class EditForm(forms.ModelForm):
+    class Meta:
+        
+        model = TaskList
+       
+        fields = ('title','description','tags')

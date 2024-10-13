@@ -1,5 +1,5 @@
 
-from .forms import RegistrationForm,LoginForm,TaskForm
+from .forms import RegistrationForm,LoginForm,TaskForm,EditForm
 from .models import *
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate, login, logout 
@@ -55,6 +55,18 @@ def new_task(request):
     else:
         forms = TaskForm()
     return render(request,'tasks/add_task.html',{'forms':forms})
+
+
+def edit_task(request,pk):
+    edit = TaskList.objects.get(id = pk)
+    if request.method == 'POST':
+        edit_form = EditForm(request.POST,instance=edit)
+        if edit_form.is_valid():
+            edit_form.save()
+            return redirect('home')
+    else:
+        edit_form = EditForm(request.POST,instance=edit)
+    return render(request,'tasks/edit_tasks.html',{'post':edit,'etask':edit_form})
 @login_required
 def all_tasks(request):
     gTask = TaskList.objects.filter(user = request.user)

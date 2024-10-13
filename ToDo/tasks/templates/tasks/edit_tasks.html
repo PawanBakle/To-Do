@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task</title>
+</head>
+<body>
+<form method="POST" action="">
+    {% csrf_token %}
+    
+        <p>Tag : {{ etask.tags }}</p></legend>
+        <p>Title : {{ etask.title }}</p></legend>
+
+        <p>Descriptoon :{{ etask.description }}</p>
+		<div class="d-flex justify-content-center mt-3 login_container">
+				 				<input class="btn login_btn" type="submit" value="Add">
+        </div>
+            	</form>
+</body>
+</html>

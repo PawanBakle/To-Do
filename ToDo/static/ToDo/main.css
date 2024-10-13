@@ -133,7 +133,28 @@ a, a:hover, a:active, a:visited { color: white; }
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-decoration: none;
 }
-  
+.button8-task{
+    
+    height: 30px;
+    width: 20%;
+    color: rgb(255, 255, 255);
+    
+   
+    
+    border-radius: 15px;
+    background-color: #1a66be;
+    text-align: center;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-weight: 0;
+    font-size: 1.3rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration: none;
+
+
+}
 .button-8:disabled {
     cursor: default;
 }
