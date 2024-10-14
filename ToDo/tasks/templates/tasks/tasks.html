@@ -33,11 +33,14 @@
     <th>Priority</th>
   </tr>
   {% for i in tasks %}
+  <br>
+  <br>
   <tr>
     <td> {{ i.title }} </td>
     <td> {{ i.description }} </td>
     <td> {{ i.tags }} </td>
-    <td> <a class="button8-task" href="{% url 'edit' i.id %}">Edit</a> </td>
+    <td> <a class="button-9" href="{% url 'edit' i.id %}">Edit</a> </td>
+    <td> <a class="button-8" href="{% url 'delete' i.id %}">Delete</a> </td>
   </tr>
   {% endfor %}
 
