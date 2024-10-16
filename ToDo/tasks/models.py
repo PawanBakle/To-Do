@@ -16,5 +16,6 @@ class TaskList(models.Model):
     date = models.DateField(blank=True,null=True)
     tags = models.CharField(max_length =200,null = True,choices=CHOICE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    is_completed = models.BooleanField(default=False)
     def __str__(self):
         return self.title + self.description

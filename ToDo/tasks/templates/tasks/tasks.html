@@ -4,6 +4,7 @@
 <h2 class="user">{{ request.user.username }}</h2>
 <style>
   table {
+    padding: none;
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
@@ -24,17 +25,13 @@
 <a id="tsk-hover" class="tsk-a" href="{% url 'add_task' %}">New Task</a>
 <hr>
 <table>
-
-
-
   <tr>
     <th>Tasks</th>
     <th>Description</th>
     <th>Priority</th>
   </tr>
   {% for i in tasks %}
-  <br>
-  <br>
+
   <tr>
     <td> {{ i.title }} </td>
     <td> {{ i.description }} </td>
@@ -46,6 +43,19 @@
 
 </table>
 <hr>
+<h2>Completed Tasks</h2>
+<table>
+  <tr>
+    <th>Tasks</th>
+    <th>Description</th>
+  </tr>
+  {% for task in completed_tasks %}
+    <tr>
+      <td>{{ task.title }}</td>
+      <td>{{ task.description }}</td>
+    </tr>
+  {% endfor %}
+</table>
 <a class="button-8" href="{% url 'logout' %}">Logout</a>
 <!-- {% else %} -->
 <!-- <a href="{% url 'login' %}">Login</a>

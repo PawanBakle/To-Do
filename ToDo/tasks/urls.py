@@ -10,6 +10,7 @@ urlpatterns = [
     path('logout/', views.sign_out, name='logout'),
     path('add_task/', views.new_task, name='add_task'),
     path('edit_task/<int:pk>/', views.edit_task, name="edit"),
+    path('all_task/<int:pk>/complete/', views.is_completed, name="mark_as_completed"),
     path('delete_post/<int:pk>/', views.post_delete, name="delete"),
     
 ]

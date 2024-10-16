@@ -1,9 +1,9 @@
 
-from .forms import RegistrationForm,LoginForm,TaskForm,EditForm
+from .forms import RegistrationForm,LoginForm,TaskForm,EditForm,Completed
 from .models import *
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate, login, logout 
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 import pdb; 
 from django import template
@@ -11,10 +11,11 @@ from django.template.defaulttags import register
 
 register = template.Library()
 # Create your views here.
-
+@login_required
 def index(request):
-
-    return render(request,'tasks/index.html')
+    gTask = TaskList.objects.filter(user = request.user)
+    # return render(request,'tasks/tasks.html',{'tasks':gTask})
+    return render(request,'tasks/index.html',{'tasks':gTask})
    
 def register(request):
     if request.method == 'POST':
@@ -81,10 +82,25 @@ def edit_task(request,pk):
     return render(request,'tasks/edit_tasks.html',{'post':edit,'etask':edit_form})
 @login_required
 def all_tasks(request):
-   
+    incomplete_tasks = TaskList.objects.filter(is_completed=False)
+    completed_tasks = TaskList.objects.filter(is_completed=True)
+
+    # return render(request, 'task_list.html', {
+    #     'incomplete_tasks': incomplete_tasks,
+    #     'completed_tasks': completed_tasks,
+    # })
     gTask = TaskList.objects.filter(user = request.user)
-    return render(request,'tasks/tasks.html',{'tasks':gTask})
-def post_delete(request, pk):
+    return render(request,'tasks/tasks.html',{'tasks':gTask,'completed_tasks': completed_tasks})
+def is_completed(request,pk):
+    task  =get_object_or_404(TaskList, id=pk)
+    task.is_completed = True
+    task.save()
+    return redirect('my_task')
+        
+        
+
+
+def post_delete(request,pk):
     post = TaskList.objects.get(id=pk)
     if request.method == 'POST':
         post.delete()

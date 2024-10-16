@@ -21,6 +21,28 @@
    
   <hr><br> 
   <a class="button-9"  href="{% url 'my_task' %}">My Tasks</a>
+  <table>
+
+
+
+    <tr>
+      <th>Tasks</th>
+      <th>Description</th>
+      <th>Priority</th>
+    </tr>
+    {% for i in tasks %}
+    <br>
+    <br>
+    <tr>
+      <td> {{ i.title }} </td>
+      <td> {{ i.description }} </td>
+      <td> {{ i.tags }} </td>
+      <td> <a class="button-9" href="{% url 'edit' i.id %}">Edit</a> </td>
+      <td> <a class="button-8" href="{% url 'delete' i.id %}">Delete</a> </td>
+    </tr>
+    {% endfor %}
+  
+  </table>
 
 
   <hr><br>
